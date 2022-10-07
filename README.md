@@ -5,9 +5,11 @@ application up and running.
 
 Things you may want to cover:
 
-* Ruby version
+* Ruby version 2.6.7p197 (2021-04-05 revision 67941) 
 
-* System dependencies
+* rails  version 6.1.7
+
+* System dependencies gem v-  3.0.3.1
 
 * Configuration
 
