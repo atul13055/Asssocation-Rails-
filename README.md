@@ -23,4 +23,4 @@ Things you may want to cover:
 
 * Deployment instructions
 
-* ...
+* Add fiel to post 

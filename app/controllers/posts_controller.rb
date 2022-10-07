@@ -13,11 +13,12 @@ class PostsController < ApplicationController
   end
  	
   def create
-     #debugger
+     debugger
    
      @post = Post.new
      @post.user_id =params[:user_id]
      @post.title = params[:title]
+     @post.desc = params[:desc]
      @post.save
      respond_to do |format|
        format.js 

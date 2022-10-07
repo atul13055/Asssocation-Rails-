@@ -7,6 +7,7 @@
     <tr>
       <th>Poster Email</th>
       <th>post</th>
+      <th>Body</th>
     </tr>
   </thead>
 
@@ -16,6 +17,7 @@
           <tr>
             <td><%= post.user.email %></td>
             <td><%= post.title %></td>
+            <td><%= post.desc %></td>
             <th><%=link_to "Delete", user_post_path(current_user, post),:remote => true, method: :delete %></td>
             
          </tr>
