@@ -1,0 +1,56 @@
+<!-- 
+<h3> <strong><%#= current_user.email %></strong></h3>
+ 
+  <h2>post name: <%#= @post.title %></h2>
+ 
+ <h3>comments on post </h3>
+<table border="1">
+  <thead>
+    <tr>
+      <th>commenter Email</th>
+      <th>comment</th>
+       <th>delete comment</th>
+
+    </tr>
+  </thead>
+
+  <tbody id= "myComments">
+    <%# @comments.each do |comment| %>
+     <%# if post.user == current_user %>
+          <tr>
+
+            <td><%#= comment.user.email %></td>
+            <td><%#= comment.comentext %></td>
+           <%# if comment.user == current_user %>
+           <%# debugger %>
+           <td><%#= link_to "Delete",  user_post_comment_path(:id,comment.post, comment), method: :delete %></td>
+           <%# end %>
+         </tr>
+    <%# end %>
+  </tbody>
+</table>
+!--->
+<div id="showcomment">
+  <%= render "showcomment", local: {comments: @comment} %>
+</div>
+<div id="commet_form"> 
+  <%= render "new", local: {comments: @comment} %>
+</div>
+<%= link_to "Back" , root_path %>
+
+
+
+<script>
+  //debugger
+  $("#myForm").submit(function(e) {
+    e.preventDefault(); //stop html create request 
+    var comment = $("#comment_comentext").val();
+
+    $.ajax({
+      url: "/users/id/posts/<%= @post.id %>/comments",
+      method: 'post',
+      data: {comment: {comentext: comment} }
+    });
+
+  });
+</script>

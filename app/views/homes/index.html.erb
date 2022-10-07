@@ -1,0 +1,54 @@
+
+
+
+<h1 >Home page</h1>
+ <strong><%= current_user.email %></strong>.
+
+<% if user_signed_in? %>
+	<%= link_to "Edit", edit_user_registration_path %><br>
+	<%= button_to "logout", destroy_user_session_path, method: :delete %>
+<% else %>
+	<%= link_to "Signup", new_user_registration_path %>
+	<%= link_to "login", user_session_path %>
+<% end %>
+
+<%= link_to "Create post", new_user_post_path(current_user) %>
+
+<%= link_to "Show Post",  user_posts_path(current_user) %>
+<%#= render "posts/new" %>
+
+<center>                       
+  <h1>Posts</h1>
+<table border="1">
+  <thead>
+    <tr>
+    	<th>Poster Email</th>
+      <th>post</th>
+      <th>comment</th>
+      <th>show comments</th>
+      <th>likes</th>
+
+    </tr>
+  </thead>
+
+  <tbody  class="p-3 mb-2 bg-dark text-white">
+    <% @posts.each do |post| %>
+      <tr>
+      	<td><%= post.user.email %>
+        <td><%= post.title %></td>
+        <td><%=link_to "create comment", user_post_comments_path(current_user, post.id) %></td>
+        <td><%=link_to "show comments", user_post_comments_path(:id,current_user,post_id: post.id) %></td>
+         
+         <% pre_like = post.likes.find { |like| like.user_id == current_user.id} %>
+         <% if pre_like %>
+            <td><%= button_to 'Unlike', user_post_like_path(:id,user_id:current_user.id,post_id:post.id),remote:true, method: :delete,class: "btn btn-outline-danger" %></td>
+          <% else %>
+            <td><%= button_to 'Like', user_post_likes_path(:id,current_user: current_user.id,post_id: post.id), remote:true, method: :post,class: "btn btn-outline-success" %></td>
+         <% end %>
+        <td><%= post.likes.count %> <%= (post.likes.count) == 1 ? 'Like' : 'Likes'%></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+

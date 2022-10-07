@@ -1,0 +1,4 @@
+$("#showcomment").html("<%= j render :partial => 'showcomment', :locals => { comment: @comments } %>");
+$("#myForm")[0].reset();
+$("#myForm").find("input[type= submit]")[0].disabled = false;
+// $("#commet_form").html("<%= j render "new", locals: {comments: @comment} %>"); 

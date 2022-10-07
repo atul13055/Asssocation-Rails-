@@ -1,0 +1,34 @@
+
+
+<h3> <strong><%= current_user.email %></strong></h3>
+ 
+  <h2>post name: <%= @post.title %></h2>
+ 
+ <h3>comments on post </h3>
+<table border="1">
+  <thead>
+    <tr>
+      <th>commenter Email</th>
+      <th>comment</th>
+       <th>delete comment</th>
+
+    </tr>
+  </thead>
+
+  <tbody >
+    <% @comments.each do |comment| %>
+     <%# if post.user == current_user %>
+          <tr>
+
+            <td><%= comment.user.email %></td>
+            <td><%= comment.comentext %></td>
+           <% if comment.user == current_user %>
+           <%# debugger %>
+           <td><%= link_to "Delete",  user_post_comment_path(:id,comment.post, comment),:remote => true , method: :delete %></td>
+           <% end %>
+         </tr>
+    <% end %>
+  </tbody>
+</table>
+<%#= render "new", local: {comments: @comment} %>
+<%#= link_to "Back" , root_path %>
